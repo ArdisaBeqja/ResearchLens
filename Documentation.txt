@@ -1,0 +1,48 @@
+***ResearchLense will help someone understand and compare several research papaers, with evidence linked to original pages
+
+***Steps
+1.Collect 10-20 research papers on one topic and define questions the system should answer.
+Topics: Dataset creation, problem formulation
+2.Extract text, headings, and tables form the PDFs, preserving paper titles and page numbers.
+Topics: Document procession, 
+        NLP preprocessing, => preparing and cleaning text so a computer can analyze it or use it in a ML model
+        Data engineering => building systems that collect, organize, transform, store and deliver data so its reliable
+3.Split the text into smaller passages
+Topics: Text chunking, tokenization, context management.
+4.Building a basic keyword search using BM25 as your baseline
+Topics: Information retrieval, lexical search.BM25 is not a neural ML model
+        BM25 => Is a raking algorithm that orders documents according to how well their words match a search query.
+5.Covert passages into embeddings using a pretrained model
+Topics: Transformers, representation learning, text embeddings, transfer learning
+        Embeddings: Are list of numbers that represent the meaning of the text 
+6.Store embeddings in FAISS and retrieve passages similar to a question
+Topics: Vector search, semantic similarity, dense retrieval
+	FAISS (Facebook AI Similarity Search) is a library for efficiency searching through vectors, it organizes them into an index
+7.Combine keyword and semantic search, then rerank the results with a cross-encoder.
+Topics: Hybrid retrieval, neural ranking, cross-encoders.
+	Cross-encoders => is a model that reads two pieces of text together and gives a score indicating how relevant they are to each other.
+8.Connect an LLM to generate answers from retrieved passages, with page citations and an insufficient-evidence response when needed.
+Topics: Retrieval-argument generation (RAG), language modelling, grounded generation.
+        RAG => is a method where an AI first retrieves relevant information from documents, then uses that information to generate an answer
+        A. Ask a question : "How do these two papers approach disease detection?"
+	B. Retrieve : Use BM25 or embeddings with FASS to find relevant sections from the papers
+	C. Rerank passages: Optionally use a cross-encoder to select the most relevant ones.
+	D. Generate an answer: Give the question and selected passages to a large language model (LLM), which uses them to explain the differences 
+	   and cite the sources.
+	
+	I: Retrieval: Finding relevant information.
+	II: Augmentation: Adding that information to the model's input
+	III: Generation: Writing an answer using the supplied information
+9.Extract each paper's methods, datasets, metrics, results, and limitations into structured records with supporting evidence.
+Topics: Information extraction, structed generation
+10.Compare the papers and generate an evidence-backed table, accounting for different datasets and evaluation settings.
+Topics: Multi-document synthesis, compare summarization.
+11.Create a labelled evaluation set with questions, expected answers, and supporting passages
+Topics: Data annotation, experimental design
+12.Compare retrieval approaches and evaluate the answers, measuring evidence retrieval, correctness, citation support, latency and cost.
+Topics: ML evaluation, benchmarking
+13.Optionally fine-tune an embedding model or reranker
+Topics: Supervised learning, contrastive learning domain adaptation
+14.Build the interface, package the application, and publish your code and results
+Topics: Software engineering, deployment, reproductivity, MLOps foundations
+
